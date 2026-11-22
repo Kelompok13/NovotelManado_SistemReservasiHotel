@@ -48,7 +48,7 @@ Klik **Login Admin** di pojok kanan atas, lalu masukkan akun di atas.
 ## 📁 Struktur Folder
 
 ```
-hotel-reservasi/
+NovotelManado_SistemReservasiHotel/
 ├── index.html
 ├── css/
 │   └── style.css
@@ -65,22 +65,51 @@ hotel-reservasi/
 
 ## 💻 Instalasi Lokal
 
-Tidak ada dependensi yang perlu di-install.
+
+Aplikasi ini menggunakan HTML, CSS, dan JavaScript tanpa framework atau dependensi tambahan.
+
+### 1. Clone Repository
 
 ```bash
-# 1. Clone repositori
-git clone https://github.com/USERNAME/hotel-reservasi.git
-cd hotel-reservasi
-
-# 2. (Opsional) salin template environment — projek ini tidak membutuhkannya
-cp .env.example .env
-
-# 3. Jalankan
-# Cara A: buka index.html langsung di browser
-# Cara B: jalankan server lokal
-npx serve .
-# atau: python3 -m http.server 8000   → buka http://localhost:8000
+git clone https://github.com/Kelompok13/NovotelManado_SistemReservasiHotel.git
 ```
+
+### 2. Masuk ke Folder Projek
+
+```bash
+cd NovotelManado_SistemReservasiHotel
+```
+
+### 3. Jalankan Aplikasi
+
+**Cara A: Menggunakan Browser**
+
+Buka file `index.html` menggunakan Google Chrome, Microsoft Edge, atau browser lainnya.
+
+**Cara B: Menggunakan Visual Studio Code**
+
+1. Buka folder projek di Visual Studio Code.
+2. Instal ekstensi Live Server jika belum tersedia.
+3. Klik kanan pada `index.html`.
+4. Pilih Open with Live Server.
+
+**Cara C: Menggunakan Python**
+
+Jalankan perintah:
+
+```bash
+python -m http.server 8000
+```
+Kemudian buka alamat:
+
+http://localhost:8000
+
+### 4. Login Akun Uji Coba
+
+Gunakan akun Admin atau Resepsionis yang tersedia pada bagian Akun Uji Coba.
+
+Catatan: Aplikasi tidak memerlukan database server atau file .env untuk menjalankan versi ini.
+
 
 ## 🚀 Deploy ke GitHub Pages
 
