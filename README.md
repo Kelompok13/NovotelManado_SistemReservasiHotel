@@ -4,10 +4,9 @@ Aplikasi web untuk mengelola reservasi kamar hotel: tamu dapat membuat reservasi
 
 ## 🔗 Live Demo
 
-**https://USERNAME.github.io/hotel-reservasi/** *(ganti USERNAME dengan username GitHub Anda setelah langkah 5)*
+**https://kelompok13.github.io/NovotelManado_SistemReservasiHotel/** 
 
-Repositori: https://github.com/USERNAME/hotel-reservasi *(ganti USERNAME dengan username GitHub Anda)*
-
+Repositori:https://github.com/Kelompok13/NovotelManado_SistemReservasiHotel
 ## 🔐 Akun Uji Coba
 
 | Role | Username | Password | Hak akses |
