@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Reservasi Hotel - Novotel Manado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">🏨</span>
+        <div>
+          <h1>NOVOTEL MANADO </h1>
+          <p class="subtitle">Sistem Reservasi berbasis Unified Process</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <nav class="nav" id="main-nav">
+          <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+          <button class="nav-btn" data-view="form">Buat Reservasi</button>
+          <button class="nav-btn" data-view="list">Daftar Reservasi</button>
+          <button class="nav-btn" data-view="rooms">Kamar</button>
+          <button class="nav-btn admin-only hidden" data-view="admin">Admin Panel</button>
+        </nav>
+        <div class="auth-area" id="auth-area">
+          <button class="btn btn-sm btn-primary" id="btn-show-login">Login Admin</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- DASHBOARD -->
+      <section id="view-dashboard" class="view active">
+        <div class="page-header">
+          <h2>Dashboard</h2>
+          <p>Ringkasan sistem reservasi hotel</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">📋</div>
+            <div>
+              <div class="stat-value" id="stat-total">0</div>
+              <div class="stat-label">Total Reservasi</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">✅</div>
+            <div>
+              <div class="stat-value" id="stat-confirmed">0</div>
+              <div class="stat-label">Dikonfirmasi</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon orange">⏳</div>
+            <div>
+              <div class="stat-value" id="stat-pending">0</div>
+              <div class="stat-label">Menunggu</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon purple">🛏️</div>
+            <div>
+              <div class="stat-value" id="stat-rooms">5</div>
+              <div class="stat-label">Tipe Kamar</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Alur Unified Process (UP)</h3>
+          <div class="up-flow">
+            <div class="up-phase"><span class="phase-num">1</span><strong>Inception</strong><p>Aktor, Use Case, Batasan</p></div>
+            <div class="up-arrow">→</div>
+            <div class="up-phase"><span class="phase-num">2</span><strong>Elaboration</strong><p>Domain Model, Class</p></div>
+            <div class="up-arrow">→</div>
+            <div class="up-phase"><span class="phase-num">3</span><strong>Construction</strong><p>Coding Iteratif</p></div>
+            <div class="up-arrow">→</div>
+            <div class="up-phase"><span class="phase-num">4</span><strong>Transition</strong><p>Testing & Demo</p></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Use Case Utama</h3>
+          <div class="usecase-list">
+            <div class="usecase-item"><span class="uc-actor">Tamu</span> Buat Reservasi</div>
+            <div class="usecase-item"><span class="uc-actor">Tamu</span> Cek Status Reservasi</div>
+            <div class="usecase-item"><span class="uc-actor">Admin</span> Login & Kelola</div>
+            <div class="usecase-item"><span class="uc-actor">Admin</span> Konfirmasi Reservasi</div>
+            <div class="usecase-item"><span class="uc-actor">Admin</span> Check-in / Check-out</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FORM -->
+      <section id="view-form" class="view">
+        <div class="page-header">
+          <h2>Buat Reservasi Baru</h2>
+          <p>Isi data lengkap sesuai kebutuhan sistem</p>
+        </div>
+        <form id="reservation-form" class="form-card">
+          <fieldset>
+            <legend>1. Informasi Pribadi Tamu</legend>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="nama">Nama Lengkap *</label>
+                <input type="text" id="nama" name="nama" required placeholder="PUTRA MARTINUS TAFONAO">
+              </div>
+              <div class="form-group">
+                <label for="telepon">Nomor Telepon *</label>
+                <input type="tel" id="telepon" name="telepon" required placeholder="082216827907">
+              </div>
+              <div class="form-group">
+                <label for="email">Alamat Email *</label>
+                <input type="email" id="email" name="email" required placeholder="martinusputra30@gmai.com">
+              </div>
+              <div class="form-group">
+                <label for="alamat">Alamat Rumah</label>
+                <input type="text" id="alamat" name="alamat" placeholder="PERUM MAESA UNIMA BLOK A 98 ">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>2. Detail Reservasi</legend>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="checkin">Tanggal Check-in *</label>
+                <input type="date" id="checkin" name="checkin" required>
+              </div>
+              <div class="form-group">
+                <label for="checkout">Tanggal Check-out *</label>
+                <input type="date" id="checkout" name="checkout" required>
+              </div>
+              <div class="form-group">
+                <label for="dewasa">Jumlah Dewasa *</label>
+                <input type="number" id="dewasa" name="dewasa" min="1" value="1" required>
+              </div>
+              <div class="form-group">
+                <label for="anak">Jumlah Anak</label>
+                <input type="number" id="anak" name="anak" min="0" value="0">
+              </div>
+              <div class="form-group">
+                <label for="tipeKamar">Jenis Kamar *</label>
+                <select id="tipeKamar" name="tipeKamar" required>
+                  <option value="">-- Pilih Tipe Kamar --</option>
+                  <option value="Standard">Standard Room</option>
+                  <option value="Deluxe">Deluxe Room</option>
+                  <option value="Suite">Suite Room</option>
+                  <option value="Family">Family Room</option>
+                  <option value="Presidential">Presidential Suite</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="extraBed">Extra Bed</label>
+                <select id="extraBed" name="extraBed">
+                  <option value="0">Tidak</option>
+                  <option value="1">1 Extra Bed</option>
+                  <option value="2">2 Extra Bed</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>3. Preferensi & Permintaan Khusus</legend>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="preferensiLokasi">Preferensi Lokasi Kamar</label>
+                <select id="preferensiLokasi" name="preferensiLokasi">
+                  <option value="">Tidak ada preferensi</option>
+                  <option value="Dekat Lift">Dekat Lift</option>
+                  <option value="Jauh dari Lift">Jauh dari Lift</option>
+                  <option value="Pemandangan Laut">Pemandangan Laut</option>
+                  <option value="Pemandangan Kota">Pemandangan Kota</option>
+                  <option value="Lantai Tinggi">Lantai Tinggi</option>
+                  <option value="Lantai Rendah">Lantai Rendah</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label for="permintaanKhusus">Permintaan Khusus</label>
+                <textarea id="permintaanKhusus" name="permintaanKhusus" rows="2" placeholder="Contoh: butuh akses kursi roda, kamar non-smoking..."></textarea>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>4. Detail Pembayaran</legend>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="metodeBayar">Metode Pembayaran *</label>
+                <select id="metodeBayar" name="metodeBayar" required>
+                  <option value="">-- Pilih Metode --</option>
+                  <option value="Tunai">Tunai</option>
+                  <option value="Kartu Kredit">Kartu Kredit</option>
+                  <option value="Transfer Bank">Transfer Bank</option>
+                  <option value="City Ledger">City Ledger</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="deposit">Jumlah Deposit (Rp)</label>
+                <input type="number" id="deposit" name="deposit" min="0" value="0">
+              </div>
+              <div class="form-group" id="kartuGroup" style="display:none;">
+                <label for="noKartu">Nomor Kartu (4 digit terakhir)</label>
+                <input type="text" id="noKartu" name="noKartu" maxlength="4" placeholder="XXXX">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>5. Tujuan & Catatan Tambahan</legend>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="tujuan">Tujuan Kunjungan</label>
+                <select id="tujuan" name="tujuan">
+                  <option value="Liburan">Liburan</option>
+                  <option value="Bisnis">Bisnis</option>
+                  <option value="Acara Khusus">Acara Khusus</option>
+                  <option value="Lainnya">Lainnya</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label for="catatan">Catatan Tambahan</label>
+                <textarea id="catatan" name="catatan" rows="2" placeholder="Contoh: merayakan ulang tahun..."></textarea>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>6. Sumber Reservasi</legend>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="sumber">Sumber Reservasi *</label>
+                <select id="sumber" name="sumber" required>
+                  <option value="">-- Pilih Sumber --</option>
+                  <option value="Website Resmi">Website Resmi</option>
+                  <option value="OTA">Agen Perjalanan Online (OTA)</option>
+                  <option value="Telepon">Telepon</option>
+                  <option value="Walk-in">Walk-in</option>
+                  <option value="Agen Travel">Agen Travel</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>7. Riwayat & Loyalitas Tamu</legend>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="memberId">Nomor Keanggotaan / Member ID</label>
+                <input type="text" id="memberId" name="memberId" placeholder="Opsional">
+              </div>
+              <div class="form-group">
+                <label for="poin">Poin Loyalitas</label>
+                <input type="number" id="poin" name="poin" min="0" value="0">
+              </div>
+            </div>
+          </fieldset>
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="btn-reset">Reset</button>
+            <button type="submit" class="btn btn-primary">Simpan Reservasi</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- LIST -->
+      <section id="view-list" class="view">
+        <div class="page-header">
+          <h2>Daftar Reservasi</h2>
+          <p id="list-subtitle">Lihat status reservasi (fitur admin memerlukan login)</p>
+        </div>
+        <div class="filter-bar">
+          <input type="text" id="search" placeholder="Cari nama / no. reservasi...">
+          <select id="filter-status">
+            <option value="">Semua Status</option>
+            <option value="MENUNGGU">Menunggu</option>
+            <option value="DIKONFIRMASI">Dikonfirmasi</option>
+            <option value="DIBATALKAN">Dibatalkan</option>
+            <option value="CHECKIN">Check-in</option>
+            <option value="CHECKOUT">Check-out</option>
+          </select>
+        </div>
+        <div class="table-wrapper">
+          <table id="reservation-table">
+            <thead>
+              <tr>
+                <th>No. Reservasi</th>
+                <th>Nama Tamu</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Tipe Kamar</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="reservation-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ROOMS -->
+      <section id="view-rooms" class="view">
+        <div class="page-header">
+          <h2>Daftar Tipe Kamar</h2>
+          <p>Informasi kamar yang tersedia</p>
+        </div>
+        <div class="rooms-grid" id="rooms-grid"></div>
+      </section>
+
+      <!-- ADMIN -->
+      <section id="view-admin" class="view">
+        <div class="page-header">
+          <h2>Admin Panel</h2>
+          <p>Kelola reservasi dan monitor sistem</p>
+        </div>
+        <div class="stats-grid" id="admin-stats">
+          <div class="stat-card">
+            <div class="stat-icon blue">📋</div>
+            <div><div class="stat-value" id="admin-total">0</div><div class="stat-label">Total Reservasi</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon orange">⏳</div>
+            <div><div class="stat-value" id="admin-pending">0</div><div class="stat-label">Menunggu Konfirmasi</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">✅</div>
+            <div><div class="stat-value" id="admin-confirmed">0</div><div class="stat-label">Dikonfirmasi</div></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon purple">🚪</div>
+            <div><div class="stat-value" id="admin-checkin">0</div><div class="stat-label">Sedang Check-in</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Reservasi Menunggu Konfirmasi</h3>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>No. Reservasi</th><th>Nama</th><th>Check-in</th><th>Kamar</th><th>Deposit</th><th>Aksi Cepat</th>
+                </tr>
+              </thead>
+              <tbody id="admin-pending-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Aktivitas Terbaru</h3>
+          <ul class="activity-list" id="admin-activity"></ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal hidden">
+      <div class="modal-content login-modal">
+        <button class="modal-close" id="login-modal-close">&times;</button>
+        <h3>Login Admin</h3>
+        <p class="login-hint">Gunakan akun admin untuk mengelola reservasi</p>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" required placeholder="admin" autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" required placeholder="••••••••" autocomplete="current-password">
+          </div>
+          <div class="login-error hidden" id="login-error">Username atau password salah</div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+        <p class="login-demo">Demo: <code>admin</code> / <code>admin123</code><br>atau <code>resepsionis</code> / <code>resepsionis123</code></p>
+      </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <button class="modal-close" id="modal-close">&times;</button>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+  </div>
+
+  <script src="js/models.js"></script>
+  <script src="js/repository.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

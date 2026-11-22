@@ -1,0 +1,16 @@
+# Dependensi
+node_modules/
+
+# File rahasia / environment
+.env
+.env.local
+.env.*.local
+
+# File sistem & editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Berkas kompres
+*.zip
